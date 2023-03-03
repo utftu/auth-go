@@ -1,0 +1,38 @@
+{
+  "do": {
+    "name": "do",
+    "stage1": {
+      "url": "https://cloud.digitalocean.com/v1/oauth/authorize",
+      "responseType": "code",
+      "scope": ["read"]
+    },
+    "stage2": {
+      "url": "https://cloud.digitalocean.com/v1/oauth/token",
+      "grantType": "authorization_code"
+    }
+  },
+  "google": {
+    "name": "google",
+    "stage1": {
+      "url": "https://accounts.google.com/o/oauth2/v2/auth",
+      "responseType": "code",
+      "scope": ["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email"]
+    },
+    "stage2": {
+      "url": "https://oauth2.googleapis.com/token",
+      "grantType": "authorization_code"
+    }
+  },
+  "github": {
+    "name": "github",
+    "stage1": {
+      "url": "https://github.com/login/oauth/authorize",
+      "responseType": "code",
+      "scope": ["read:user", "user:email"]
+    },
+    "stage2": {
+      "url": "https://github.com/login/oauth/access_token",
+      "grantType": "authorization_code"
+    }
+  }
+}

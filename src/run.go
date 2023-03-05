@@ -19,12 +19,12 @@ type UserMongo struct {
 func main() {
 	// Simulate BSON data from MongoDB
 	bsonData := primitive.M{
-		"name":               "John Doe",
-		"email":              "johndoe@example.com",
-		"avatar":             "https://example.com/avatar.jpg",
+		"name":              "John Doe",
+		"email":             "johndoe@example.com",
+		"avatar":            "https://example.com/avatar.jpg",
 		"original_response": `{"status":"success"}`,
-		"code":               "1234",
-		"_id":                "abc123",
+		"code":              "1234",
+		"_id":               "abc123",
 	}
 
 	// Convert the BSON data to a byte slice

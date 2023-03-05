@@ -14,7 +14,7 @@ var letterRunes = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ12
 func GetRandString(n int) string {
 	b := make([]rune, n)
 	for i := range b {
-			b[i] = letterRunes[rand.Intn(len(letterRunes))]
+		b[i] = letterRunes[rand.Intn(len(letterRunes))]
 	}
 	return string(b)
 }

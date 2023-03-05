@@ -12,7 +12,7 @@ import (
 )
 
 type htmlProps struct {
-	Client *client.Client
+	Client      *client.Client
 	RedirectUrl string
 }
 
@@ -25,23 +25,22 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 
 		fmt.Println("name", name)
 
-
 		client := clientMongo.GetByName(name)
 		fmt.Println("client", client)
 
-		if (client == nil) {
+		if client == nil {
 			c.Data(http.StatusOK, "", []byte(`hello`))
 			return
 		}
 
-		if (client.CheckAllowedUrl(redirectUrl) == false) {
+		if client.CheckAllowedUrl(redirectUrl) == false {
 			c.Data(http.StatusOK, "", []byte(`hello123`))
 			return
 		}
 
-		c.HTML(http.StatusOK, "stage0.html", &htmlProps {
-      RedirectUrl: redirectUrl,
-			Client: client,
+		c.HTML(http.StatusOK, "stage0.html", &htmlProps{
+			RedirectUrl: redirectUrl,
+			Client:      client,
 		})
 	}
 }

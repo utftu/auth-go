@@ -8,7 +8,7 @@ import (
 
 	"encoding/json"
 	"io"
-)                                                          
+)
 
 func HandleGoogleResponse(response io.Reader) (*user.User, error) {
 	var googleRequest1 responses.GoogleRequest1
@@ -34,9 +34,9 @@ func HandleGoogleResponse(response io.Reader) (*user.User, error) {
 
 	originalResponseJson, _ := json.Marshal(googleRequest2)
 	return &user.User{
-		Name: googleRequest2.Name,
-		Email: googleRequest2.Email,
-		Avatar: googleRequest2.Picture,
+		Name:             googleRequest2.Name,
+		Email:            googleRequest2.Email,
+		Avatar:           googleRequest2.Picture,
 		OriginalResponse: string(originalResponseJson),
 	}, nil
 }

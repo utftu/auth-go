@@ -18,12 +18,12 @@ type UserMongo struct {
 }
 
 type UserMongoInsert struct {
-	user.User  `bson:",inline" json:",inline"`
-	Code string `json:"code"`
+	user.User `bson:",inline" json:",inline"`
+	Code      string `json:"code"`
 }
 
 func NewUserMongoConnection(client *mongo.Client) *UserMongoConnection {
-	return &UserMongoConnection {
+	return &UserMongoConnection{
 		client,
 	}
 }
@@ -39,32 +39,31 @@ func (clientMongo *UserMongoConnection) GetCollection() *mongo.Collection {
 
 func (clientMongo *UserMongoConnection) Get(key string, id string) *UserMongo {
 	var user UserMongo
-	fmt.Println("-----", "key", key);
-	fmt.Println("-----", "id", id);
+	fmt.Println("-----", "key", key)
+	fmt.Println("-----", "id", id)
 	// var any interface {}
 	// filter := bson.D{    bson.E{Key: key, Value: id},}
 	// filter := bson.D{    bson.E{Key: key, Value: id},}
-	filter := bson.D{    bson.E{Key: key, Value: id},}
-
+	filter := bson.D{bson.E{Key: key, Value: id}}
 
 	err := clientMongo.GetCollection().FindOne(context.TODO(), filter).Decode(&user)
-  // err := clientMongo.GetCollection().FindOne(context.Background(), bson.D {{
+	// err := clientMongo.GetCollection().FindOne(context.Background(), bson.D {{
 	// 	Key: key, Value: id,
 	// }}).Decode(&user)
-	fmt.Println("-----", "user", user.User);
+	fmt.Println("-----", "user", user.User)
 	// fmt.Println("-----", "any", any);
-	if (err != nil) {
+	if err != nil {
 		return nil
 	}
 
-	return & user
+	return &user
 }
 
 func (clientMongo *UserMongoConnection) Save(user *user.User) string {
 	code := random.GetRandString(50)
 
 	collection := clientMongo.GetCollection()
-	collection.InsertOne(context.Background(), UserMongoInsert {
+	collection.InsertOne(context.Background(), UserMongoInsert{
 		User: *user,
 		Code: code,
 	})

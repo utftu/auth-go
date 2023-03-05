@@ -49,13 +49,12 @@ func HandleDoResponse(response io.Reader) (*user.User, error) {
 	}
 
 	bytes, _ := io.ReadAll(res.Body)
-	fmt.Println("-----", "bytes", string(bytes));
-
+	fmt.Println("-----", "bytes", string(bytes))
 
 	originalResponseJson, _ := json.Marshal(do)
 	return &user.User{
-		Name: do.Info.Name,
-		Email: do.Info.Email,
+		Name:             do.Info.Name,
+		Email:            do.Info.Email,
 		OriginalResponse: string(originalResponseJson),
 	}, nil
 }

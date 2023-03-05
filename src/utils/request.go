@@ -5,9 +5,9 @@ import (
 )
 
 func GetRequestProtocol(c *gin.Context) string {
-		if c.Request.TLS != nil {
-			return "https"
-		} else {
-			return "http"
-		}
+	if c.Request.TLS != nil {
+		return "https"
+	} else {
+		return "http"
+	}
 }

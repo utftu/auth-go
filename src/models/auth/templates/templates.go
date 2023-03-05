@@ -11,10 +11,10 @@ func init() {
 }
 
 type ProviderTemplate struct {
-	Name  string `json:"name"`
+	Name   string `json:"name"`
 	Stage1 struct {
-		URL          string `json:"url"`
-		ResponseType string `json:"responseType"`
+		URL          string   `json:"url"`
+		ResponseType string   `json:"responseType"`
 		Scope        []string `json:"scope"`
 	} `json:"stage1"`
 	Stage2 struct {
@@ -23,4 +23,4 @@ type ProviderTemplate struct {
 	} `json:"stage2"`
 }
 
-var ProviderTemplates map[string] ProviderTemplate
+var ProviderTemplates map[string]ProviderTemplate

@@ -1,6 +1,6 @@
-package responses
+package google
 
-type GoogleRequest1 struct {
+type Token struct {
 	AccessToken string `json:"access_token"`
 	ExpiresIn   int    `json:"expires_in"`
 	Scope       string `json:"scope"`
@@ -8,7 +8,7 @@ type GoogleRequest1 struct {
 	IDToken     string `json:"id_token"`
 }
 
-type GoogleRequest2 struct {
+type Account struct {
 	Sub           string `json:"sub"`
 	Name          string `json:"name"`
 	GivenName     string `json:"given_name"`

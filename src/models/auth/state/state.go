@@ -7,7 +7,7 @@ type State struct {
 }
 
 func ParseState(stateStr string) *State {
-	var state State;
+	var state State
 	error := json.Unmarshal([]byte(stateStr), &state)
 	if error != nil {
 		return nil

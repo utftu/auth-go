@@ -11,14 +11,14 @@ type ClientProvider struct {
 }
 
 type Client struct {
-	Id   string `bson:"_id"`
-	Name string
+	Id          string `bson:"_id"`
+	Name        string
 	AllowedUrls []string
 
 	Providers map[string]ClientProvider
 }
 
-func(client *Client) CheckProvider(providerName string) bool {
+func (client *Client) CheckProvider(providerName string) bool {
 	for _, provider := range client.Providers {
 		if provider.Name == providerName {
 			return true
@@ -30,7 +30,7 @@ func(client *Client) CheckProvider(providerName string) bool {
 func (client *Client) CheckAllowedUrl(url string) bool {
 	for _, allowedUrl := range client.AllowedUrls {
 		matched, _ := regexp.MatchString(allowedUrl, url)
-		if (matched) {
+		if matched {
 			return true
 		}
 	}

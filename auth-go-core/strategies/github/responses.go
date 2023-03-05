@@ -1,14 +1,14 @@
-package responses
+package github
 
 import "time"
 
-type GithubToken struct {
+type Token struct {
 	AccessToken string `json:"access_token"`
 	TokenType   string `json:"token_type"`
 	Scope       string `json:"scope"`
 }
 
-type GithubUser struct {
+type Account struct {
 	Login                   string      `json:"login"`
 	ID                      int         `json:"id"`
 	NodeID                  string      `json:"node_id"`
@@ -55,7 +55,7 @@ type GithubUser struct {
 	} `json:"plan"`
 }
 
-type GithubEmail struct {
+type Email struct {
 	Email      string `json:"email"`
 	Primary    bool   `json:"primary"`
 	Verified   bool   `json:"verified"`

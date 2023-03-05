@@ -1,6 +1,6 @@
-package responses
+package do
 
-type Do struct {
+type Token struct {
 	AccessToken  string `json:"access_token"`
 	Bearer       string `json:"bearer"`
 	ExpiresIn    int    `json:"expires_in"`
@@ -15,7 +15,7 @@ type Do struct {
 	} `json:"info"`
 }
 
-type DoAccount struct {
+type Account struct {
 	Account struct {
 		DropletLimit    int    `json:"droplet_limit"`
 		FloatingIPLimit int    `json:"floating_ip_limit"`

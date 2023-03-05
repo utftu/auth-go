@@ -8,7 +8,7 @@ import (
 )
 
 type Stage2 struct {
-	Url string
+	Url  string
 	Name string
 
 	ClientId     string
@@ -24,7 +24,7 @@ func (callback *Stage2) Request() (*user.User, error) {
 	if err != nil {
 		return nil, err
 	}
-	fmt.Println("-----", "callback.Code", callback.Code);
+	fmt.Println("-----", "callback.Code", callback.Code)
 	params := parsedUrl.Query()
 	params.Add("client_id", callback.ClientId)
 	params.Add("client_secret", callback.ClientSecret)
@@ -34,7 +34,7 @@ func (callback *Stage2) Request() (*user.User, error) {
 	params.Add("redirect_uri", callback.RedirectUri)
 	parsedUrl.RawQuery = params.Encode()
 
-	fmt.Println("-----", "parsedUrl.String()", parsedUrl.String());
+	fmt.Println("-----", "parsedUrl.String()", parsedUrl.String())
 
 	req, err := http.NewRequest("POST", parsedUrl.String(), nil)
 	req.Header.Set("Content-Type", "application/json")
@@ -54,13 +54,16 @@ func (callback *Stage2) Request() (*user.User, error) {
 
 	var user *user.User
 	switch callback.Name {
-		case "do": {
+	case "do":
+		{
 			user, err = HandleDoResponse(res.Body)
 		}
-		case "google": {
+	case "google":
+		{
 			user, err = HandleGoogleResponse(res.Body)
 		}
-		case "github": {
+	case "github":
+		{
 			user, err = HandleGithubResponse(res.Body)
 		}
 	}

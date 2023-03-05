@@ -1,24 +1,17 @@
 package auth
 
-type Request struct {
-
-}
-
-type Callback struct {
-	
-}
-
-
-type A struct {
-	RequestUrl string
-	
-
+type Data struct {
 	ClientId     string
-	ResponseType string
-	RedirectUri  string
-	Scope        []string
+	ClientSecret string
+	RedirectUrl  string
 }
 
-func CreateAuth() {
-	 
+type Strategy interface {
+	GetUserRedirect(data *Data) string
+	GetUserData(data *Data, code string)
+}
+
+type AuthGoCore struct {
+	Data     Data
+	Strategy Strategy
 }

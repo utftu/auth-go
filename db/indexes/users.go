@@ -14,7 +14,7 @@ func CreateUserIndexes() {
 	collection := client.Database("auth").Collection("users")
 
 	collection.Indexes().CreateOne(context.Background(), mongo.IndexModel{
-		Keys: bson.M {
+		Keys: bson.M{
 			"code": 1,
 		},
 		Options: options.Index().SetUnique(true),

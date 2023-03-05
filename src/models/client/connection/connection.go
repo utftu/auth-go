@@ -10,7 +10,7 @@ import (
 )
 
 func NewClientMongo(client *mongo.Client) *ClientMongo {
-	return &ClientMongo {
+	return &ClientMongo{
 		client,
 	}
 }
@@ -26,10 +26,10 @@ func (clientMongo *ClientMongo) GetCollection() *mongo.Collection {
 
 func (clientMongo *ClientMongo) Get(key string, id string) *client.Client {
 	var client client.Client
-  err := clientMongo.GetCollection().FindOne(context.Background(), bson.D {{
+	err := clientMongo.GetCollection().FindOne(context.Background(), bson.D{{
 		Key: key, Value: id,
 	}}).Decode(&client)
-	if (err != nil) {
+	if err != nil {
 		return nil
 	}
 

@@ -16,7 +16,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-
 func CreateHandler(e *env.Env) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		name := c.Param("app")
@@ -24,23 +23,23 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		code := c.Query("code")
 		stateQuery := c.Query("state")
 
-		fmt.Println("-----", "code", code);
+		fmt.Println("-----", "code", code)
 
 		parsedState := state.ParseState(stateQuery)
 		if parsedState == nil {
 			c.Data(http.StatusOK, "", []byte(`Invalid state`))
-		  return
+			return
 		}
 
 		if code == "" {
 			c.Data(http.StatusOK, "", []byte(`Invalid code`))
-		  return
+			return
 		}
 
 		clientMongo := connection.NewClientMongo(e.Mongo)
 		client := clientMongo.GetByName(name)
 
-		if (client == nil) {
+		if client == nil {
 			c.Data(http.StatusOK, "", []byte(`Invalid client`))
 			return
 		}
@@ -52,16 +51,16 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 
 		providerTemplate := templates.ProviderTemplates[provider]
 
-		stage2 := auth.Stage2 {
-			Url: providerTemplate.Stage2.URL,
+		stage2 := auth.Stage2{
+			Url:  providerTemplate.Stage2.URL,
 			Name: provider,
 
-			ClientId: client.Providers[provider].ClientId,
+			ClientId:     client.Providers[provider].ClientId,
 			ClientSecret: client.Providers[provider].ClientSecret,
-			GrantType: providerTemplate.Stage2.GrantType,
-			RedirectUri: fmt.Sprintf("%s://%s/auth/%s/stage2/%s", utils.GetRequestProtocol(c), c.Request.Host, name, provider),
-			Code: code,
-			State: stateQuery,
+			GrantType:    providerTemplate.Stage2.GrantType,
+			RedirectUri:  fmt.Sprintf("%s://%s/auth/%s/stage2/%s", utils.GetRequestProtocol(c), c.Request.Host, name, provider),
+			Code:         code,
+			State:        stateQuery,
 		}
 
 		user, error := stage2.Request()
@@ -77,7 +76,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		parsedRedirect, err := url.Parse(parsedState.Redirect)
 		if err != nil {
 			c.Data(http.StatusOK, "", []byte(`Invalid redirect`))
-		  return
+			return
 		}
 
 		parsedRedirectQuery := parsedRedirect.Query()

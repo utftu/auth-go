@@ -10,8 +10,8 @@ import (
 )
 
 type Student struct {
-	FirstName string  `bson:"first_name,omitempty"`
-	LastName  string  `bson:"last_name,omitempty"`
+	FirstName string          `bson:"first_name,omitempty"`
+	LastName  string          `bson:"last_name,omitempty"`
 	Address   mongodb.Address `bson:"inline"`
 	Age       int
 }
@@ -23,7 +23,7 @@ func main() {
 	// filter := bson.D{    bson.E{Key: "code", Value: "WM7CiFh05kfS3wywnniTsFumspZiKpE1e8nvyUJAUihp92K6CN"},}
 	var result connection.UserMongo
 	err := coll.FindOne(context.TODO(), filter).Decode(&result)
-	fmt.Println("-----", "err", err);
+	fmt.Println("-----", "err", err)
 	fmt.Println(result)
 }
 

@@ -46,12 +46,10 @@ func HandleResponse(response io.Reader) (*user.User, error) {
 		return nil, err
 	}
 
-	originalResponseJson, _ := json.Marshal(account)
 	return &user.User{
 		Name:             account.Name,
 		Email:            account.Email,
 		Avatar:           account.Picture,
-		OriginalResponse: string(originalResponseJson),
 	}, nil
 }
 

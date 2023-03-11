@@ -7,10 +7,10 @@ import (
 type User = user.User
 
 type StrategyData struct {
-	ClientId        string
-	ClientSecret    string
-	RedirectUrl     string
-	ServiceRedirectUrl    string
+	ClientId           string
+	ClientSecret       string
+	RedirectUrl        string
+	ServiceRedirectUrl string
 }
 
 type Strategy interface {

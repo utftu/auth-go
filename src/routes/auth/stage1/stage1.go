@@ -34,7 +34,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 
 		// providerTemplate := templates.ProviderTemplates[provider]
 
-		strategy := auth.SelectStrategy("do", &authGoCore.StrategyData{
+		strategy := auth.SelectStrategy(provider, &authGoCore.StrategyData{
 			ClientId: client.Providers[provider].ClientId,
 			ClientSecret: client.Providers[provider].ClientSecret,
 			RedirectUrl: redirect,

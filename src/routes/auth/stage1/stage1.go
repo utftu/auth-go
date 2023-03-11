@@ -6,10 +6,9 @@ import (
 
 	"auth-go/src/env"
 	"auth-go/src/models/auth"
-	"auth-go/src/models/auth/state"
-	"auth-go/src/models/auth/templates"
 	"auth-go/src/models/client/connection"
 	"auth-go/src/utils"
+	authGoCore "auth-go/auth-go-core"
 
 	"github.com/gin-gonic/gin"
 )
@@ -33,19 +32,28 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 			return
 		}
 
-		providerTemplate := templates.ProviderTemplates[provider]
+		// providerTemplate := templates.ProviderTemplates[provider]
 
-		stage1 := auth.Stage1{
-			Url:          providerTemplate.Stage1.URL,
-			ClientId:     client.Providers[provider].ClientId,
-			ResponseType: providerTemplate.Stage1.ResponseType,
-			RedirectUri:  fmt.Sprintf("%s://%s/auth/%s/stage2/%s", utils.GetRequestProtocol(c), c.Request.Host, name, provider),
-			Scope:        providerTemplate.Stage1.Scope,
-			State: string(*state.StringifyState(&state.State{
-				Redirect: redirect,
-			})),
-		}
+		strategy := auth.SelectStrategy("do", &authGoCore.StrategyData{
+			ClientId: client.Providers[provider].ClientId,
+			ClientSecret: client.Providers[provider].ClientSecret,
+			RedirectUrl: redirect,
+			ServiceRedirectUrl: fmt.Sprintf("%s://%s/auth/%s/stage2/%s", utils.GetRequestProtocol(c), c.Request.Host, name, provider),
+		})
 
-		c.Redirect(302, stage1.GetUri())
+		c.Redirect(302, strategy.GetUserRedirectUrl())
+
+		// stage1 := auth.Stage1{
+		// 	Url:          providerTemplate.Stage1.URL,
+		// 	ClientId:     client.Providers[provider].ClientId,
+		// 	ResponseType: providerTemplate.Stage1.ResponseType,
+		// 	RedirectUri:  fmt.Sprintf("%s://%s/auth/%s/stage2/%s", utils.GetRequestProtocol(c), c.Request.Host, name, provider),
+		// 	Scope:        providerTemplate.Stage1.Scope,
+		// 	State: string(*state.StringifyState(&state.State{
+		// 		Redirect: redirect,
+		// 	})),
+		// }
+
+		// c.Redirect(302, stage1.GetUri())
 	}
 }

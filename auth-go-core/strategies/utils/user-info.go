@@ -14,7 +14,7 @@ type UserTokenData struct {
 	ClientSecret     string
 	GrantType        string
 	Code             string
-	UserTokenUrl string
+	ServiceHandleUrl string
 }
 
 type handleToken func(io.Reader) (*user.User, error)
@@ -30,7 +30,7 @@ func GetUserData(dataToken *UserTokenData, handleToken handleToken) (*user.User,
 	params.Add("client_secret", dataToken.ClientSecret)
 	params.Add("grant_type", dataToken.GrantType)
 	params.Add("code", dataToken.Code)
-	params.Add("redirect_uri", dataToken.UserTokenUrl)
+	params.Add("redirect_uri", dataToken.ServiceHandleUrl)
 	parsedUrl.RawQuery = params.Encode()
 
 	req, err := http.NewRequest("POST", parsedUrl.String(), nil)

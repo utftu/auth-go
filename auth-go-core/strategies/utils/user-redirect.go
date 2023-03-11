@@ -16,7 +16,7 @@ type UserRedirectData struct {
 	ClientId         string
 	ResponseType     string
 	RedirectUrl      string
-	UserRedirectUrl string
+	ServiceRedirectUrl string
 	Scope            []string
 }
 
@@ -33,7 +33,7 @@ func GetUserRedirectUrl(data *UserRedirectData) string {
 	stateBytes, _ := json.Marshal(&stateInstance)
 	params.Add("client_id", data.ClientId)
 	params.Add("response_type", data.ResponseType)
-	params.Add("redirect_uri", data.UserRedirectUrl)
+	params.Add("redirect_uri", data.ServiceRedirectUrl)
 	params.Add("scope", strings.Join(data.Scope, " "))
 	params.Add("state", string(stateBytes))
 	parsedUrl.RawQuery = params.Encode()

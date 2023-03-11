@@ -4,10 +4,11 @@ import (
 	"auth-go/src/env"
 	"auth-go/src/models/auth"
 	"auth-go/src/models/auth/state"
-	"auth-go/src/models/auth/templates"
+	"auth-go/src/utils"
+
 	userConnection "auth-go/src/models/auth/user/connection"
 	"auth-go/src/models/client/connection"
-	"auth-go/src/utils"
+	authGoCore "auth-go/auth-go-core"
 
 	"fmt"
 	"net/http"
@@ -49,23 +50,32 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 			return
 		}
 
-		providerTemplate := templates.ProviderTemplates[provider]
-
-		stage2 := auth.Stage2{
-			Url:  providerTemplate.Stage2.URL,
-			Name: provider,
-
-			ClientId:     client.Providers[provider].ClientId,
+		strategy := auth.SelectStrategy(provider, &authGoCore.StrategyData{
+			ClientId: client.Providers[provider].ClientId,
 			ClientSecret: client.Providers[provider].ClientSecret,
-			GrantType:    providerTemplate.Stage2.GrantType,
-			RedirectUri:  fmt.Sprintf("%s://%s/auth/%s/stage2/%s", utils.GetRequestProtocol(c), c.Request.Host, name, provider),
-			Code:         code,
-			State:        stateQuery,
-		}
+			RedirectUrl: parsedState.Redirect,
+			ServiceRedirectUrl: fmt.Sprintf("%s://%s/auth/%s/stage2/%s", utils.GetRequestProtocol(c), c.Request.Host, name, provider),
+		})
 
-		user, error := stage2.Request()
+		user, err := strategy.GetUserData(code)
 
-		if error != nil {
+		// providerTemplate := templates.ProviderTemplates[provider]
+
+		// stage2 := auth.Stage2{
+		// 	Url:  providerTemplate.Stage2.URL,
+		// 	Name: provider,
+
+		// 	ClientId:     client.Providers[provider].ClientId,
+		// 	ClientSecret: client.Providers[provider].ClientSecret,
+		// 	GrantType:    providerTemplate.Stage2.GrantType,
+		// 	RedirectUri:  fmt.Sprintf("%s://%s/auth/%s/stage2/%s", utils.GetRequestProtocol(c), c.Request.Host, name, provider),
+		// 	Code:         code,
+		// 	State:        stateQuery,
+		// }
+
+		// user, error := stage2.Request()
+
+		if err != nil {
 			c.Data(http.StatusOK, "", []byte(`Request to provider failed`))
 			return
 		}

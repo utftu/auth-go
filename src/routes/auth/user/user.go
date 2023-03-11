@@ -3,7 +3,6 @@ package user
 import (
 	"auth-go/src/env"
 	"encoding/json"
-	"fmt"
 
 	userConnection "auth-go/src/models/auth/user/connection"
 
@@ -17,14 +16,8 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		userMongo := userConnection.NewUserMongoConnection(e.Mongo)
 		user := userMongo.Get("code", userCode)
 
-		fmt.Println("-----", "user.User", user)
-
-		json, err := json.Marshal(&user)
-
-		fmt.Println("-----", "err", err)
+		json, _ := json.Marshal(&user.User)
 
 		c.Data(200, "application/json", json)
-
-		// c.JSON(200, user)
 	}
 }

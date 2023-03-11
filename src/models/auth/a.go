@@ -1,17 +1,18 @@
 package auth
 
-type Data struct {
-	ClientId     string
-	ClientSecret string
-	RedirectUrl  string
-}
+import (
+	authGoCore "auth-go/auth-go-core"
+	"auth-go/auth-go-core/strategies/do"
+)
 
-type Strategy interface {
-	GetUserRedirect(data *Data) string
-	GetUserData(data *Data, code string)
-}
-
-type AuthGoCore struct {
-	Data     Data
-	Strategy Strategy
+func SelectStrategy(name string, data *authGoCore.StrategyData) *authGoCore.AuthGoCore {
+	switch name {
+	case "do":
+		return &authGoCore.AuthGoCore{
+			Data:     *data,
+			Strategy: &do.Strategy {},
+		}
+	default:
+		return nil
+	}
 }

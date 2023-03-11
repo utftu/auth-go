@@ -19,7 +19,7 @@ func (doStrategy *Strategy) GetUserRedirectUrl(data *authGoCore.StrategyData) st
 		ClientId:     data.ClientId,
 		ResponseType: "code",
 		RedirectUrl:  data.RedirectUrl,
-		UserRedirectUrl: data.UserRedirectUrl,
+		ServiceRedirectUrl: data.ServiceRedirectUrl,
 		Scope:        []string{"read:user", "user:email"},
 	})
 }
@@ -72,6 +72,7 @@ func (doStrategy *Strategy) GetUserData(data *authGoCore.StrategyData, code stri
 		Url:          "https://github.com/login/oauth/access_token",
 		ClientId:     data.ClientId,
 		ClientSecret: data.ClientSecret,
+		ServiceHandleUrl: data.ServiceRedirectUrl,
 		GrantType:    "authorization_code",
 		Code:         code,
 	}, HandleResponse)

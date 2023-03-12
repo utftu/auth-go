@@ -1,4 +1,4 @@
-package auth
+package authGoCore
 
 import (
 	"auth-go/auth-go-core/user"

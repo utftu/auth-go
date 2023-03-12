@@ -6,9 +6,9 @@ import (
 	"auth-go/src/models/auth/state"
 	"auth-go/src/utils"
 
-	userConnection "auth-go/src/models/auth/user/connection"
+	"auth-go/src/models/auth/user/connection"
 	"auth-go/src/models/client/connection"
-	authGoCore "auth-go/auth-go-core"
+	"auth-go/auth-go-core"
 
 	"fmt"
 	"net/http"

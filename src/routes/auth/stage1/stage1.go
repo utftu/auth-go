@@ -8,7 +8,7 @@ import (
 	"auth-go/src/models/auth"
 	"auth-go/src/models/client/connection"
 	"auth-go/src/utils"
-	authGoCore "auth-go/auth-go-core"
+	"auth-go/auth-go-core"
 
 	"github.com/gin-gonic/gin"
 )

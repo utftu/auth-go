@@ -1,11 +1,11 @@
 package mongodb
 
 import (
-	"auth-go/src/utils"
 	"context"
 	"fmt"
 	"log"
 	"os"
+	"service/src/utils"
 	"time"
 
 	"go.mongodb.org/mongo-driver/mongo"

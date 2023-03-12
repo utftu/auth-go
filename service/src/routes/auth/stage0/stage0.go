@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"net/http"
 
-	"auth-go/src/env"
-	"auth-go/src/models/client"
-	"auth-go/src/models/client/connection"
+	"service/src/env"
+	"service/src/models/client"
+	"service/src/models/client/connection"
 
 	"github.com/gin-gonic/gin"
 )

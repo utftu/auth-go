@@ -1,14 +1,15 @@
 package stage2
 
 import (
-	"auth-go/src/env"
-	"auth-go/src/models/auth"
-	"auth-go/src/models/auth/state"
-	"auth-go/src/utils"
+	"service/src/env"
+	"service/src/models/auth"
+	"service/src/models/auth/state"
+	"service/src/utils"
 
-	"auth-go/src/models/auth/user/connection"
-	"auth-go/src/models/client/connection"
-	"github.com/utftufutukgyftryidytftuv/auth-go/auth-go-core"
+	userConnection "service/src/models/auth/user/connection"
+	"service/src/models/client/connection"
+
+	authGoCore "auth-go-core"
 
 	"fmt"
 	"net/http"

@@ -4,11 +4,12 @@ import (
 	"fmt"
 	"net/http"
 
-	"auth-go/src/env"
-	"auth-go/src/models/auth"
-	"auth-go/src/models/client/connection"
-	"auth-go/src/utils"
-	"github.com/utftufutukgyftryidytftuv/auth-go/auth-go-core"
+	"service/src/env"
+	"service/src/models/auth"
+	"service/src/models/client/connection"
+	"service/src/utils"
+
+	authGoCore "auth-go-core"
 
 	"github.com/gin-gonic/gin"
 )

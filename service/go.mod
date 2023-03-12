@@ -1,4 +1,4 @@
-module auth-go
+module service
 
 go 1.19
 

@@ -8,12 +8,12 @@ import (
 
 	"github.com/joho/godotenv"
 
-	"auth-go/src/env"
-	"auth-go/src/libs/mongodb"
-	"auth-go/src/routes/auth/stage0"
-	"auth-go/src/routes/auth/stage1"
-	"auth-go/src/routes/auth/stage2"
-	"auth-go/src/routes/auth/user"
+	"service/src/env"
+	"service/src/libs/mongodb"
+	"service/src/routes/auth/stage0"
+	"service/src/routes/auth/stage1"
+	"service/src/routes/auth/stage2"
+	"service/src/routes/auth/user"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/text/cases"
@@ -52,7 +52,7 @@ func main() {
 
 	// })
 	r.Static("/static", "./src/static")
-	r.LoadHTMLFiles("./auth-go/src/routes/auth/stage0/stage0.html")
+	r.LoadHTMLFiles("./service/src/routes/auth/stage0/stage0.html")
 
 	r.GET("/auth/:app/stage0", stage0.CreateHandler(&globalEnv))
 	r.GET("/auth/:app/stage1/:provider", stage1.CreateHandler(&globalEnv))

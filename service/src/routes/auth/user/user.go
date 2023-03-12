@@ -1,10 +1,10 @@
 package user
 
 import (
-	"auth-go/src/env"
 	"encoding/json"
+	"service/src/env"
 
-	userConnection "auth-go/src/models/auth/user/connection"
+	userConnection "service/src/models/auth/user/connection"
 
 	"github.com/gin-gonic/gin"
 )

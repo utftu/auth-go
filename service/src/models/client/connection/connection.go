@@ -3,7 +3,7 @@ package connection
 import (
 	"context"
 
-	"auth-go/src/models/client"
+	"service/src/models/client"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

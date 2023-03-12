@@ -1,8 +1,8 @@
 package indexes
 
 import (
-	"auth-go/src/libs/mongodb"
 	"context"
+	"service/src/libs/mongodb"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

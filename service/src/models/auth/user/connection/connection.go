@@ -3,10 +3,11 @@ package userConnection
 import (
 	"context"
 
-	"auth-go/src/libs/random"
-	"github.com/utftufutukgyftryidytftuv/auth-go/auth-go-core"
+	"service/src/libs/random"
 
-	// "auth-go/src/models/auth/user"
+	authGoCore "auth-go-core"
+
+	// "service/src/models/auth/user"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

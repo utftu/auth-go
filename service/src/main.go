@@ -5,7 +5,7 @@ import (
 	"html/template"
 	"os"
 
-	"github.com/joho/godotenv"
+	// "github.com/joho/godotenv"
 
 	"service/src/env"
 	"service/src/libs/mongodb"
@@ -25,19 +25,11 @@ var icons = map[string]string{
 	"github": "/static/github.png",
 }
 
-func init() {
-	err := godotenv.Load(".env.local")
-	if err != nil {
-		fmt.Println("Error loading .env.local file")
-	}
-}
-
 func main() {
+	fmt.Println("mongo", os.Getenv("MONGO"))
 	globalEnv := env.Env{
 		Mongo: mongodb.Connect(),
 	}
-
-	fmt.Println(os.Getenv("MONGO"))
 
 	r := gin.Default()
 	r.SetFuncMap(template.FuncMap{

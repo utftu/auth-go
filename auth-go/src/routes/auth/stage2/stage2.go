@@ -8,7 +8,7 @@ import (
 
 	"auth-go/src/models/auth/user/connection"
 	"auth-go/src/models/client/connection"
-	"auth-go/auth-go-core"
+	"auth-go-core"
 
 	"fmt"
 	"net/http"

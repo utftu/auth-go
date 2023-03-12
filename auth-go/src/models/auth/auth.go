@@ -1,10 +1,10 @@
 package auth
 
 import (
-	authGoCore "auth-go/auth-go-core"
-	"auth-go/auth-go-core/strategies/do"
-	"auth-go/auth-go-core/strategies/google"
-	"auth-go/auth-go-core/strategies/github"
+	"auth-go-core"
+	"auth-go-core/strategies/do"
+	"auth-go-core/strategies/google"
+	"auth-go-core/strategies/github"
 
 )
 

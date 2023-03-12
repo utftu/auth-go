@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"auth-go/src/libs/random"
-	authGoCore "auth-go/auth-go-core"
+	"auth-go-core"
 
 	// "auth-go/src/models/auth/user"
 

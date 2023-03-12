@@ -1,7 +1,7 @@
 package authGoCore
 
 import (
-	"auth-go-core/user"
+	"github.com/utftufutukgyftryidytftuv/auth-go/auth-go-core/user"
 )
 
 type User = user.User

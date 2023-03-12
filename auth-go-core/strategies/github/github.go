@@ -1,9 +1,9 @@
 package github
 
 import (
-	"auth-go-core"
-	"auth-go-core/strategies/utils"
-	"auth-go-core/user"
+	"github.com/utftufutukgyftryidytftuv/auth-go/auth-go-core"
+	"github.com/utftufutukgyftryidytftuv/auth-go/auth-go-core/strategies/utils"
+	"github.com/utftufutukgyftryidytftuv/auth-go/auth-go-core/user"
 	"encoding/json"
 	"fmt"
 	"io"

@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"html/template"
-	"log"
 	"os"
 
 	"github.com/joho/godotenv"
@@ -29,7 +28,7 @@ var icons = map[string]string{
 func init() {
 	err := godotenv.Load(".env.local")
 	if err != nil {
-		log.Fatal("Error loading .env.local file")
+		fmt.Println("Error loading .env.local file")
 	}
 }
 

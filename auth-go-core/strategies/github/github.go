@@ -1,7 +1,7 @@
 package github
 
 import (
-	authGoCore "auth-go-core"
+	"auth-go-core"
 	"auth-go-core/strategies/utils"
 	"auth-go-core/user"
 	"encoding/json"

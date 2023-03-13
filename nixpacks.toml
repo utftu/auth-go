@@ -1,0 +1,7 @@
+providers = ["go"]
+
+[phases.build]
+cmds = ["go build -tags netgo -ldflags '-s -w' -o app service/src"]
+
+[start]
+cmd = "./app"

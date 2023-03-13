@@ -42,7 +42,7 @@ func main() {
 	})
 
 	// })
-	r.Static("/static", "./src/static")
+	r.Static("/static", "./service/src/static")
 	r.LoadHTMLFiles("./service/src/routes/auth/stage0/stage0.html")
 
 	r.GET("/auth/:app/stage0", stage0.CreateHandler(&globalEnv))

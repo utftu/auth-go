@@ -3,13 +3,13 @@ package stage1
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"service/src/env"
 	"service/src/models/auth"
 	"service/src/models/client/connection"
-	"service/src/utils"
 
-	authGoCore "auth-go-core"
+	"auth-go-core"
 
 	"github.com/gin-gonic/gin"
 )
@@ -39,7 +39,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 			ClientId: client.Providers[provider].ClientId,
 			ClientSecret: client.Providers[provider].ClientSecret,
 			RedirectUrl: redirect,
-			ServiceRedirectUrl: fmt.Sprintf("%s://%s/auth/%s/stage2/%s", utils.GetRequestProtocol(c), c.Request.Host, name, provider),
+			ServiceRedirectUrl: fmt.Sprintf("%s/auth/%s/stage2/%s", os.Getenv("EXTERNAL_URL"), name, provider),
 		})
 
 		c.Redirect(302, strategy.GetUserRedirectUrl())

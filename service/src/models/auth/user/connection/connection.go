@@ -5,9 +5,7 @@ import (
 
 	"service/src/libs/random"
 
-	authGoCore "auth-go-core"
-
-	// "service/src/models/auth/user"
+	"auth-go-core"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

@@ -1,6 +1,6 @@
 package main
 
-import "auth-go/db/indexes"
+import "indexes"
 
 func main() {
 	indexes.CreateUserIndexes()

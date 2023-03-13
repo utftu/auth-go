@@ -19,4 +19,11 @@ func CreateUserIndexes() {
 		},
 		Options: options.Index().SetUnique(true),
 	})
+
+	collection.Indexes().CreateOne(context.Background(), mongo.IndexModel{
+		Keys: bson.M{
+			"created": 1,
+		},
+		Options: options.Index().SetExpireAfterSeconds(60 * 60 * 24),
+	})
 }

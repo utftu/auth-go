@@ -26,7 +26,6 @@ var icons = map[string]string{
 }
 
 func main() {
-	fmt.Println("mongo", os.Getenv("MONGO"))
 	globalEnv := env.Env{
 		Mongo: mongodb.Connect(),
 	}

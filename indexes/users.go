@@ -24,6 +24,6 @@ func CreateUserIndexes() {
 		Keys: bson.M{
 			"created": 1,
 		},
-		Options: options.Index().SetExpireAfterSeconds(60 * 60 * 24),
+		Options: options.Index().SetExpireAfterSeconds(60 * 60 * 24 * 10),
 	})
 }

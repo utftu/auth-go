@@ -24,12 +24,12 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		client := clientMongo.GetByName(name)
 
 		if client == nil {
-			c.Data(http.StatusOK, "", []byte(`hello`))
+			c.Data(http.StatusOK, "", []byte(`invalid app name`))
 			return
 		}
 
 		if client.CheckProvider(provider) == false {
-			c.Data(http.StatusOK, "", []byte(`hello`))
+			c.Data(http.StatusOK, "", []byte(`invalid provider`))
 			return
 		}
 
@@ -43,18 +43,5 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		})
 
 		c.Redirect(302, strategy.GetUserRedirectUrl())
-
-		// stage1 := auth.Stage1{
-		// 	Url:          providerTemplate.Stage1.URL,
-		// 	ClientId:     client.Providers[provider].ClientId,
-		// 	ResponseType: providerTemplate.Stage1.ResponseType,
-		// 	RedirectUri:  fmt.Sprintf("%s://%s/auth/%s/stage2/%s", utils.GetRequestProtocol(c), c.Request.Host, name, provider),
-		// 	Scope:        providerTemplate.Stage1.Scope,
-		// 	State: string(*state.StringifyState(&state.State{
-		// 		Redirect: redirect,
-		// 	})),
-		// }
-
-		// c.Redirect(302, stage1.GetUri())
 	}
 }

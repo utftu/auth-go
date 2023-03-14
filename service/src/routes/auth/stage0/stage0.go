@@ -23,10 +23,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		redirectUrl := c.Query("redirect")
 		clientMongo := connection.NewClientMongo(e.Mongo)
 
-		fmt.Println("name", name)
-
 		client := clientMongo.GetByName(name)
-		fmt.Println("client", client)
 
 		if client == nil {
 			c.Data(http.StatusOK, "", []byte(`hello`))

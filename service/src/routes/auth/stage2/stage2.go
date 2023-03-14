@@ -25,8 +25,6 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		code := c.Query("code")
 		stateQuery := c.Query("state")
 
-		fmt.Println("-----", "code", code)
-
 		parsedState := state.ParseState(stateQuery)
 		if parsedState == nil {
 			c.Data(http.StatusOK, "", []byte(`Invalid state`))
@@ -59,22 +57,6 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		})
 
 		user, err := strategy.GetUserData(code)
-
-		// providerTemplate := templates.ProviderTemplates[provider]
-
-		// stage2 := auth.Stage2{
-		// 	Url:  providerTemplate.Stage2.URL,
-		// 	Name: provider,
-
-		// 	ClientId:     client.Providers[provider].ClientId,
-		// 	ClientSecret: client.Providers[provider].ClientSecret,
-		// 	GrantType:    providerTemplate.Stage2.GrantType,
-		// 	RedirectUri:  fmt.Sprintf("%s://%s/auth/%s/stage2/%s", utils.GetRequestProtocol(c), c.Request.Host, name, provider),
-		// 	Code:         code,
-		// 	State:        stateQuery,
-		// }
-
-		// user, error := stage2.Request()
 
 		if err != nil {
 			c.Data(http.StatusOK, "", []byte(`Request to provider failed`))

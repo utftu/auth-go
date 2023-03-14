@@ -1,7 +1,6 @@
 package stage0
 
 import (
-	"fmt"
 	"net/http"
 
 	"service/src/env"

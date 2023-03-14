@@ -6,3 +6,4 @@ func main() {
 	indexes.CreateUserIndexes()
 	indexes.CreateClientIndexes()
 }
+

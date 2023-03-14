@@ -1,11 +1,7 @@
 package main
 
 import (
-	"fmt"
 	"html/template"
-	"os"
-
-	// "github.com/joho/godotenv"
 
 	"service/src/env"
 	"service/src/libs/mongodb"

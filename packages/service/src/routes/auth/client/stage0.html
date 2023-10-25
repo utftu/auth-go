@@ -1,0 +1,80 @@
+<!--{{$client := .Client}}-->
+<!--{{$redirectUrl := .RedirectUrl}}-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{{$client.Name}}</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@3.9.3/dist/full.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      text-decoration: none;
+    }
+    body {
+      min-height: 100vh;
+      font-size: 16px;
+      display: flex;
+      flex-direction: column;
+    }
+    .container {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .content {
+      max-width: 300px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 30px 20px;
+      outline: 1px solid black;
+      border-radius: 6px;
+    }
+    .label {
+      align-self: center;
+      font-size: 24px;
+    }
+    .providers {
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+    }
+    .provider {
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      padding: 20px;
+      color: black;
+    }
+    .provider:hover   {
+      background-color: lightgray;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="label">
+        {{$client.Name}}
+      </div>
+      <div class="providers">
+        {{range $provider := $client.Providers}}
+        <a href="/auth/{{$client.Name}}/stage1/{{$provider.Name}}?redirect={{$redirectUrl}}" class="provider">
+          <div class="provider__name">
+            {{capitalize $provider.Name}}
+          </div>
+          <img height="20px"  class="provider__icon" src="{{getIcon $provider.Name}}">
+        </a>
+        {{end}}
+      </div>
+    </div>
+  </div>
+</body>
+</html>

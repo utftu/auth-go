@@ -20,7 +20,7 @@ import (
 
 func CreateHandler(e *env.Env) func(c *gin.Context) {
 	return func(c *gin.Context) {
-		name := c.Param("app")
+		name := c.Param("client")
 		provider := c.Param("provider")
 		code := c.Query("code")
 		stateQuery := c.Query("state")

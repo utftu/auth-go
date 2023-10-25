@@ -5,6 +5,7 @@ import (
 
 	"service/src/env"
 	"service/src/libs/mongodb"
+	"service/src/routes/auth/client"
 	"service/src/routes/auth/stage0"
 	"service/src/routes/auth/stage1"
 	"service/src/routes/auth/stage2"
@@ -37,12 +38,13 @@ func main() {
 	})
 
 	// })
-	r.Static("/static", "./service/src/static")
-	r.LoadHTMLFiles("./service/src/routes/auth/stage0/stage0.html")
+	r.Static("/static", "./packages/service/src/static")
+	r.LoadHTMLFiles("./packages/service/src/routes/auth/stage0/stage0.html")
 
-	r.GET("/auth/:app/stage0", stage0.CreateHandler(&globalEnv))
-	r.GET("/auth/:app/stage1/:provider", stage1.CreateHandler(&globalEnv))
-	r.GET("/auth/:app/stage2/:provider", stage2.CreateHandler(&globalEnv))
+	r.GET("/auth/:client", client.CreateHandler(&globalEnv))
+	r.GET("/auth/:client/stage0", stage0.CreateHandler(&globalEnv))
+	r.GET("/auth/:client/stage1/:provider", stage1.CreateHandler(&globalEnv))
+	r.GET("/auth/:client/stage2/:provider", stage2.CreateHandler(&globalEnv))
 	r.GET("/auth/user", user.CreateHandler(&globalEnv))
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")

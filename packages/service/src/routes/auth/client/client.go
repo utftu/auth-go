@@ -1,4 +1,4 @@
-package stage0
+package client
 
 import (
 	"net/http"

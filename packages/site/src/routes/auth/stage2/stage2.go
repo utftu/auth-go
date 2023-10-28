@@ -1,14 +1,14 @@
 package stage2
 
 import (
-	"os"
-	"service/src/env"
-	"service/src/models/auth"
-	"service/src/models/auth/state"
 	"core"
+	"os"
+	"site/src/env"
+	"site/src/models/auth"
+	"site/src/models/auth/state"
 
-	userConnection "service/src/models/auth/user/connection"
-	"service/src/models/client/connection"
+	userConnection "site/src/models/auth/user/connection"
+	"site/src/models/client/connection"
 
 	"fmt"
 	"net/http"

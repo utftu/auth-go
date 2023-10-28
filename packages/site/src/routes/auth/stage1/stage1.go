@@ -1,13 +1,14 @@
-package start
+package stage1
 
 import (
 	"fmt"
 	"net/http"
 	"os"
 
-	"service/src/env"
-	"service/src/models/auth"
-	"service/src/models/client"
+	"core"
+	"site/src/env"
+	"site/src/models/auth"
+	"site/src/models/client/connection"
 
 	"github.com/gin-gonic/gin"
 )
@@ -18,7 +19,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		provider := c.Param("provider")
 		redirect := c.Query("redirect")
 
-		clientMongo := client.NewClientMongo(e.Mongo)
+		clientMongo := connection.NewClientMongo(e.Mongo)
 		client := clientMongo.GetByName(name)
 
 		if client == nil {
@@ -33,7 +34,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 
 		// providerTemplate := templates.ProviderTemplates[provider]
 
-		strategy := auth.SelectStrategy(provider, &authGoCore.StrategyData{
+		strategy := auth.SelectStrategy(provider, &core.StrategyData{
 			ClientId: client.Providers[provider].ClientId,
 			ClientSecret: client.Providers[provider].ClientSecret,
 			RedirectUrl: redirect,

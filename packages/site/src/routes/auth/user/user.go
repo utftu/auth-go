@@ -3,9 +3,9 @@ package user
 import (
 	"encoding/json"
 	"net/http"
-	"service/src/env"
+	"site/src/env"
 
-	userConnection "service/src/models/auth/user/connection"
+	userConnection "site/src/models/auth/user/connection"
 
 	"github.com/gin-gonic/gin"
 )

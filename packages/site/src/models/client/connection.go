@@ -3,7 +3,7 @@ package client
 import (
 	"context"
 
-	// "service/src/models/client"
+	// "site/src/models/client"
 
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"

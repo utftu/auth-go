@@ -1,11 +1,11 @@
-package client
+package stage0
 
 import (
 	"net/http"
 
-	"service/src/env"
-	"service/src/models/client"
-	// "service/src/models/client/connection"
+	"site/src/env"
+	"site/src/models/client"
+	"site/src/models/client/connection"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +20,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		name := c.Param("client")
 
 		redirectUrl := c.Query("redirect")
-		clientMongo := client.NewClientMongo(e.Mongo)
+		clientMongo := connection.NewClientMongo(e.Mongo)
 
 		client := clientMongo.GetByName(name)
 

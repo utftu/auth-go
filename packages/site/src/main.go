@@ -3,13 +3,13 @@ package main
 import (
 	"html/template"
 
-	"service/src/env"
-	"service/src/libs/mongodb"
-	"service/src/routes/auth/client"
-	"service/src/routes/auth/stage0"
-	"service/src/routes/auth/stage1"
-	"service/src/routes/auth/stage2"
-	"service/src/routes/auth/user"
+	"site/src/env"
+	"site/src/libs/mongodb"
+	"site/src/routes/auth/stage0"
+	"site/src/routes/auth/user"
+	"site/src/routes/auth/client"
+	"site/src/routes/auth/stage1"
+	"site/src/routes/auth/stage2"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/text/cases"
@@ -38,8 +38,8 @@ func main() {
 	})
 
 	// })
-	r.Static("/static", "./packages/service/src/static")
-	r.LoadHTMLFiles("./packages/service/src/routes/auth/stage0/stage0.html")
+	r.Static("/static", "./packages/site/src/static")
+	r.LoadHTMLFiles("./packages/site/src/routes/auth/stage0/stage0.html")
 
 	r.GET("/auth/:client", client.CreateHandler(&globalEnv))
 	r.GET("/auth/:client/stage0", stage0.CreateHandler(&globalEnv))

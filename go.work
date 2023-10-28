@@ -2,6 +2,6 @@ go 1.19
 
 use (
         ./packages/core
-        ./packages/service
+        ./packages/site
         ./packages/indexes
 )

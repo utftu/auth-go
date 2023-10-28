@@ -5,24 +5,22 @@ import (
 	"time"
 
 	"service/src/libs/random"
-
-	"auth-go-core"
+	"core"
 
 	"go.mongodb.org/mongo-driver/bson"
-	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/bson/primitive"
-
+	"go.mongodb.org/mongo-driver/mongo"
 )
 
 type UserMongo struct {
-	User authGoCore.User `bson:",inline" json:",inline"`
+	User core.User `bson:",inline" json:",inline"`
 	Code      string `json:"code" bson:"code"`
 	Id        string `json:"id" bson:"_id"`
 	Created primitive.DateTime `json:"created" bson:"created"`
 }
 
 type UserMongoInsert struct {
-	authGoCore.User `bson:",inline" json:",inline"`
+	core.User `bson:",inline" json:",inline"`
 	Code      string `json:"code"`
 	Created primitive.DateTime `json:"created" bson:"created"`
 }
@@ -54,7 +52,7 @@ func (clientMongo *UserMongoConnection) Get(key string, id string) *UserMongo {
 	return &user
 }
 
-func (clientMongo *UserMongoConnection) Save(user *authGoCore.User) string {
+func (clientMongo *UserMongoConnection) Save(user *core.User) string {
 	code := random.GetRandString(50)
 
 	collection := clientMongo.GetCollection()

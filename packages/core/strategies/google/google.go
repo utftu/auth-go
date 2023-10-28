@@ -1,19 +1,19 @@
 package google
 
 import (
-	"auth-go-core"
-	"auth-go-core/strategies/utils"
-	"auth-go-core/user"
+	"core/strategies/utils"
+	"core/user"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
+	"core"
 )
 
 type Strategy struct {
 }
 
-func (doStrategy *Strategy) GetUserRedirectUrl(data *authGoCore.StrategyData) string {
+func (doStrategy *Strategy) GetUserRedirectUrl(data *core.StrategyData) string {
 	return utils.GetUserRedirectUrl(&utils.UserRedirectData{
 		Url:          "https://accounts.google.com/o/oauth2/v2/auth",
 		ClientId:     data.ClientId,
@@ -53,7 +53,7 @@ func HandleResponse(response io.Reader) (*user.User, error) {
 	}, nil
 }
 
-func (doStrategy *Strategy) GetUserData(data *authGoCore.StrategyData, code string) (*user.User, error) {
+func (doStrategy *Strategy) GetUserData(data *core.StrategyData, code string) (*user.User, error) {
 	return utils.GetUserData(&utils.UserTokenData{
 		Url:          "https://oauth2.googleapis.com/token",
 		ClientId:     data.ClientId,

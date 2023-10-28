@@ -5,11 +5,10 @@ import (
 	"service/src/env"
 	"service/src/models/auth"
 	"service/src/models/auth/state"
+	"core"
 
-	"service/src/models/auth/user/connection"
+	userConnection "service/src/models/auth/user/connection"
 	"service/src/models/client/connection"
-
-	"auth-go-core"
 
 	"fmt"
 	"net/http"
@@ -49,7 +48,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 			return
 		}
 
-		strategy := auth.SelectStrategy(provider, &authGoCore.StrategyData{
+		strategy := auth.SelectStrategy(provider, &core.StrategyData{
 			ClientId: client.Providers[provider].ClientId,
 			ClientSecret: client.Providers[provider].ClientSecret,
 			RedirectUrl: parsedState.Redirect,

@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"auth-go-core/user"
+	"core/user"
 	"io"
 	"net/http"
 	"net/url"

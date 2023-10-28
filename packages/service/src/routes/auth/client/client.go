@@ -5,7 +5,7 @@ import (
 
 	"service/src/env"
 	"service/src/models/client"
-	"service/src/models/client/connection"
+	// "service/src/models/client/connection"
 
 	"github.com/gin-gonic/gin"
 )
@@ -20,7 +20,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		name := c.Param("client")
 
 		redirectUrl := c.Query("redirect")
-		clientMongo := connection.NewClientMongo(e.Mongo)
+		clientMongo := client.NewClientMongo(e.Mongo)
 
 		client := clientMongo.GetByName(name)
 

@@ -1,7 +1,7 @@
 go 1.19
 
 use (
-        ./packages/auth-go-core
+        ./packages/core
         ./packages/service
         ./packages/indexes
 )

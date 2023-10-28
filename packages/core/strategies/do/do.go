@@ -1,9 +1,9 @@
 package do
 
 import (
-	"auth-go-core"
-	"auth-go-core/strategies/utils"
-	"auth-go-core/user"
+	"core"
+	"core/strategies/utils"
+	"core/user"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -13,7 +13,7 @@ import (
 type Strategy struct {
 }
 
-func (doStrategy *Strategy) GetUserRedirectUrl(data *authGoCore.StrategyData) string {
+func (doStrategy *Strategy) GetUserRedirectUrl(data *core.StrategyData) string {
 	return utils.GetUserRedirectUrl(&utils.UserRedirectData{
 		Url:          "https://cloud.digitalocean.com/v1/oauth/authorize",
 		ClientId:     data.ClientId,
@@ -68,7 +68,7 @@ func HandleResponse(response io.Reader) (*user.User, error) {
 	}, nil
 }
 
-func (doStrategy *Strategy) GetUserData(data *authGoCore.StrategyData, code string) (*user.User, error) {
+func (doStrategy *Strategy) GetUserData(data *core.StrategyData, code string) (*user.User, error) {
 	return utils.GetUserData(&utils.UserTokenData{
 		Url:          "https://cloud.digitalocean.com/v1/oauth/token",
 		ClientId:     data.ClientId,

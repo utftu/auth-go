@@ -1,13 +1,13 @@
 package github
 
 import (
-	"core/strategies/utils"
-	"core/user"
+	"core"
+	"core/src/strategies/utils"
+	"core/src/user"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
-	"core"
 )
 
 type Strategy struct {

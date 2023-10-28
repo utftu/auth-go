@@ -1,7 +1,7 @@
 package utils
 
 import (
-	"core/user"
+	"core/src/user"
 	"io"
 	"net/http"
 	"net/url"

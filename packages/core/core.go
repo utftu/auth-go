@@ -1,7 +1,7 @@
 package core
 
 import (
-	"core/user"
+	"core/src/user"
 )
 
 type User = user.User

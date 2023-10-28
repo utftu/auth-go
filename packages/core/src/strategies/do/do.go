@@ -2,8 +2,8 @@ package do
 
 import (
 	"core"
-	"core/strategies/utils"
-	"core/user"
+	"core/src/strategies/utils"
+	"core/src/user"
 	"encoding/json"
 	"fmt"
 	"io"

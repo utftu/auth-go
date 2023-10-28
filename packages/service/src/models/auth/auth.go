@@ -2,9 +2,9 @@ package auth
 
 import (
 	authGoCore "core"
-	"core/strategies/do"
-	"core/strategies/github"
-	"core/strategies/google"
+	"core/src/strategies/do"
+	"core/src/strategies/github"
+	"core/src/strategies/google"
 )
 
 func SelectStrategy(name string, data *authGoCore.StrategyData) *authGoCore.AuthGoCore {

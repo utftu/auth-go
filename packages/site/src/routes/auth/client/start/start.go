@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 
+	"core"
 	"site/src/env"
 	"site/src/models/auth"
 	"site/src/models/client"
@@ -33,7 +34,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 
 		// providerTemplate := templates.ProviderTemplates[provider]
 
-		strategy := auth.SelectStrategy(provider, &authGoCore.StrategyData{
+		strategy := auth.SelectStrategy(provider, &core.StrategyData{
 			ClientId: client.Providers[provider].ClientId,
 			ClientSecret: client.Providers[provider].ClientSecret,
 			RedirectUrl: redirect,

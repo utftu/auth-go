@@ -35,7 +35,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 			return
 		}
 
-		c.HTML(http.StatusOK, "stage0.html", &htmlProps{
+		c.HTML(http.StatusOK, "client.html", &htmlProps{
 			RedirectUrl: redirectUrl,
 			Client:      client,
 		})

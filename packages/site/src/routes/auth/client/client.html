@@ -66,7 +66,7 @@
       </div>
       <div class="providers">
         {{range $provider := $client.Providers}}
-        <a href="/auth/{{$client.Name}}/stage1/{{$provider.Name}}?redirect={{$redirectUrl}}" class="provider">
+        <a href="/auth/{{$client.Name}}/{{$provider.Name}}?redirect={{$redirectUrl}}" class="provider">
           <div class="provider__name">
             {{capitalize $provider.Name}}
           </div>

@@ -32,13 +32,11 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 			return
 		}
 
-		// providerTemplate := templates.ProviderTemplates[provider]
-
 		strategy := auth.SelectStrategy(provider, &core.StrategyData{
 			ClientId: client.Providers[provider].ClientId,
 			ClientSecret: client.Providers[provider].ClientSecret,
 			RedirectUrl: redirect,
-			ServiceRedirectUrl: fmt.Sprintf("%s/auth/%s/stage2/%s", os.Getenv("EXTERNAL_URL"), name, provider),
+			ServiceRedirectUrl: fmt.Sprintf("%s/auth/%s/%s/cb", os.Getenv("EXTERNAL_URL"), name, provider),
 		})
 
 		c.Redirect(302, strategy.GetUserRedirectUrl())

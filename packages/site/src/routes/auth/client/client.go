@@ -6,8 +6,6 @@ import (
 	"site/src/env"
 	"site/src/models/client"
 
-	// "site/src/models/client/connection"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -31,7 +29,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 		}
 
 		if client.CheckAllowedUrl(redirectUrl) == false {
-			c.Data(http.StatusOK, "", []byte(`hello123`))
+			c.Data(http.StatusOK, "", []byte(`redirect url not allowed`))
 			return
 		}
 

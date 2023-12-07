@@ -41,6 +41,7 @@ func HandleResponse(response io.Reader) (*user.User, error) {
 
 	client := &http.Client{}
 	res, err := client.Do(req)
+	defer res.Body.Close();
 	if err != nil {
 		return nil, err
 	}

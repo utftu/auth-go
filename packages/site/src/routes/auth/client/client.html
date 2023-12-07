@@ -27,52 +27,28 @@
       justify-content: center;
       align-items: center;
     }
-    .content {
-      max-width: 300px;
-      flex-grow: 1;
-      display: flex;
-      flex-direction: column;
-      padding: 30px 20px;
-      outline: 1px solid black;
-      border-radius: 6px;
-    }
-    .label {
-      align-self: center;
-      font-size: 24px;
-    }
-    .providers {
-      margin-top: 40px;
-      display: flex;
-      flex-direction: column;
-    }
-    .provider {
-      display: flex;
-      justify-content: space-between;
-      cursor: pointer;
-      padding: 20px;
-      color: black;
-    }
-    .provider:hover   {
-      background-color: lightgray;
-      border-radius: 6px;
-    }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="content">
-      <div class="label">
-        {{$client.Name}}
-      </div>
-      <div class="providers">
-        {{range $provider := $client.Providers}}
-        <a href="/auth/{{$client.Name}}/{{$provider.Name}}?redirect={{$redirectUrl}}" class="provider">
-          <div class="provider__name">
-            {{capitalize $provider.Name}}
-          </div>
-          <img height="20px"  class="provider__icon" src="{{getIcon $provider.Name}}">
-        </a>
-        {{end}}
+    <div class="content card w-96 bg-base-100 shadow-xl">
+      <figure><img src="https://daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+      <div class="card-body">
+        <h2 class="card-title">{{$client.Name}}</h2>
+        <div class="mt-8">
+          {{range $provider := $client.Providers}}
+            <a href="/auth/{{$client.Name}}/{{$provider.Name}}?redirect={{$redirectUrl}}" class="stat cursor-pointer">
+              <div class="stat-figure text-secondary">
+                <div class="">
+                  <div class="w-16 rounded-full">
+                    <img src="{{getIcon $provider.Name}}" />
+                  </div>
+                </div>
+              </div>
+              <div class="stat-value">{{capitalize $provider.Name}}</div>
+            </a>
+          {{end}}
+        </div>
       </div>
     </div>
   </div>

@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"site/src/env"
 
-	userConnection "site/src/models/auth/user/connection"
+	"site/src/models/auth/user"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,7 +14,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 	return func(c *gin.Context) {
 		userCode := c.Query("code")
 
-		userMongo := userConnection.NewUserMongoConnection(e.Mongo)
+		userMongo := user.NewUserMongoConnection(e.Mongo)
 		user := userMongo.Get("code", userCode)
 
 		if user == nil {

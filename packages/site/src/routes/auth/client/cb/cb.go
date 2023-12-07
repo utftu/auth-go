@@ -1,4 +1,4 @@
-package stage2
+package cb
 
 import (
 	"core"
@@ -7,8 +7,8 @@ import (
 	"site/src/models/auth"
 	"site/src/models/auth/state"
 
-	userConnection "site/src/models/auth/user/connection"
-	"site/src/models/client/connection"
+	"site/src/models/auth/user"
+	"site/src/models/client"
 
 	"fmt"
 	"net/http"
@@ -35,7 +35,7 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 			return
 		}
 
-		clientMongo := connection.NewClientMongo(e.Mongo)
+		clientMongo := client.NewClientMongo(e.Mongo)
 		client := clientMongo.GetByName(name)
 
 		if client == nil {
@@ -52,18 +52,18 @@ func CreateHandler(e *env.Env) func(c *gin.Context) {
 			ClientId: client.Providers[provider].ClientId,
 			ClientSecret: client.Providers[provider].ClientSecret,
 			RedirectUrl: parsedState.Redirect,
-			ServiceRedirectUrl: fmt.Sprintf("%s/auth/%s/stage2/%s", os.Getenv("EXTERNAL_URL"), name, provider),
+			ServiceRedirectUrl: fmt.Sprintf("%s/auth/%s/%s/cb", os.Getenv("EXTERNAL_URL"), name, provider),
 		})
 
-		user, err := strategy.GetUserData(code)
+		userData, err := strategy.GetUserData(code)
 
 		if err != nil {
 			c.Data(http.StatusOK, "", []byte(`Request to provider failed`))
 			return
 		}
 
-		userMongoConnection := userConnection.NewUserMongoConnection(e.Mongo)
-		userCode := userMongoConnection.Save(user)
+		userMongoConnection := user.NewUserMongoConnection(e.Mongo)
+		userCode := userMongoConnection.Save(userData)
 
 		parsedRedirect, err := url.Parse(parsedState.Redirect)
 		if err != nil {

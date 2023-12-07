@@ -5,12 +5,10 @@ import (
 
 	"site/src/env"
 	"site/src/libs/mongodb"
-	"site/src/routes/auth/stage0"
 	"site/src/routes/auth/user"
 	"site/src/routes/auth/client"
 	"site/src/routes/auth/client/start"
-	"site/src/routes/auth/stage1"
-	"site/src/routes/auth/stage2"
+	"site/src/routes/auth/client/cb"
 
 	"github.com/gin-gonic/gin"
 	"golang.org/x/text/cases"
@@ -39,16 +37,13 @@ func main() {
 	})
 
 	r.Static("/static", "./packages/site/src/static")
-	r.LoadHTMLFiles("./packages/site/src/routes/auth/stage0/stage0.html")
 	r.LoadHTMLFiles("./packages/site/src/routes/auth/client/client.html")
 
 
 	r.GET("/auth/:client", client.CreateHandler(&globalEnv))
 	r.GET("/auth/:client/:provider", start.CreateHandler(&globalEnv))
+	r.GET("/auth/:client/:provider/cb", cb.CreateHandler(&globalEnv))
 	
-	r.GET("/auth/:client/stage0", stage0.CreateHandler(&globalEnv))
-	r.GET("/auth/:client/stage1/:provider", stage1.CreateHandler(&globalEnv))
-	r.GET("/auth/:client/stage2/:provider", stage2.CreateHandler(&globalEnv))
 	r.GET("/auth/user", user.CreateHandler(&globalEnv))
 
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
